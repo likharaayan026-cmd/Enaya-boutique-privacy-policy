@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>ENAYA BOUTIQUE | Premium Ladies Tailor & Designer Studio - Gwalior</title>
+    <meta name="description" content="Enaya Boutique by Preeti Kosta - Best Ladies Tailor in Tansen Road, Gwalior. Custom Blouse, Designer Suits, Lehengas, Alterations & Expert Fitting.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FAF7F2',
+                        blush: '#F9EBEA',
+                        blushDark: '#E8CEC7',
+                        gold: '#D4AF37',
+                        goldDark: '#B38F24',
+                        goldLight: '#F3E5AB',
+                        burgundy: '#5B1E31',
+                        burgundyDark: '#3D1220',
+                        charcoal: '#2D2727',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+        import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBt3iYcR4SijEJqtrBlH8mNr292vakgJFQ",
+            authDomain: "figo-movies.firebaseapp.com",
+            databaseURL: "https://figo-movies-default-rtdb.firebaseio.com",
+            projectId: "figo-movies",
+            storageBucket: "figo-movies.firebasestorage.app",
+            messagingSenderId: "425238806262",
+            appId: "1:425238806262:web:7d23814e4b550695bb76d7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        window.firebaseDb = db;
+        window.dbRef = ref;
+        window.dbSet = set;
+        window.dbOnValue = onValue;
+        window.dbGet = get;
+    </script>
+
+    <style>
+        html, body {
+            touch-action: manipulation;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            background-color: #FAF7F2;
+            color: #2D2727;
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        input, select, textarea, button {
+            font-size: 16px !important; 
+            touch-action: manipulation;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #D4AF37 0%, #B38F24 50%, #8A6D14 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-bg-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #C59B27 100%);
+        }
+
+        .burgundy-gradient {
+            background: linear-gradient(135deg, #5B1E31 0%, #3D1220 100%);
+        }
+
+        .glass-header {
+            background: rgba(250, 247, 242, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FAF7F2; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+
+        .slot-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .slot-btn.disabled-slot {
+            background-color: #E5E7EB !important;
+            color: #9CA3AF !important;
+            border-color: #D1D5DB !important;
+            cursor: not-allowed !important;
+            text-decoration: line-through;
+            opacity: 0.7;
+            position: relative;
+        }
+        .slot-btn.disabled-slot::after {
+            content: "🔴";
+            font-size: 8px;
+            position: absolute;
+            top: 2px;
+            right: 4px;
+        }
+
+        .confirm-modal {
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .pre-booked-slot {
+            background-color: #FEE2E2 !important;
+            color: #991B1B !important;
+            border-color: #FECACA !important;
+            cursor: not-allowed !important;
+            text-decoration: line-through;
+            opacity: 0.85;
+        }
+        .pre-booked-slot::after {
+            content: "🔴";
+            font-size: 8px;
+            position: absolute;
+            top: 2px;
+            right: 4px;
+        }
+
+        /* Hide bottom nav when keyboard is open */
+        .keyboard-open #mobileBottomNav {
+            display: none !important;
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ClothingStore",
+      "name": "ENAYA BOUTIQUE",
+      "image": "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1200&q=80",
+      "telePhone": "+916267062990",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Near Shiv Shakti Mandir, Tansen Road",
+        "addressLocality": "Gwalior",
+        "addressRegion": "MP",
+        "postalCode": "474002",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 26.2238,
+        "longitude": 78.1828
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday"],
+          "opens": "12:00",
+          "closes": "20:30"
+        }
+      ],
+      "priceRange": "₹₹",
+      "founder": {
+        "@type": "Person",
+        "name": "Preeti Kosta"
+      }
+    }
+    </script>
+</head>
+<body class="antialiased text-charcoal bg-cream">
+
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="fixed inset-0 z-[100] burgundy-gradient flex flex-col items-center justify-center text-white transition-opacity duration-700">
+        <div class="text-center p-6 transform transition-all duration-500 scale-100" id="splashContent">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full border-2 border-gold p-1 flex items-center justify-center shadow-2xl bg-burgundyDark/50">
+                <i class="fa-solid fa-scissors text-4xl text-gold animate-pulse"></i>
+            </div>
+            <h1 class="font-serif text-3xl md:text-4xl tracking-wider text-gold font-bold mb-2">ENAYA BOUTIQUE</h1>
+            <p class="text-xs md:text-sm tracking-widest text-goldLight uppercase font-light">Ladies Tailor & Designer Studio</p>
+            <div class="w-16 h-0.5 bg-gold mx-auto my-4"></div>
+            <p class="text-xs italic text-gray-300">By Preeti Kosta</p>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-header border-b border-gold/20 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-full bg-burgundy flex items-center justify-center text-gold border border-gold/40 shadow-md">
+                    <i class="fa-solid fa-scissors text-lg"></i>
+                </div>
+                <div>
+                    <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-burgundy block leading-none">ENAYA</span>
+                    <span class="text-[10px] tracking-widest text-goldDark uppercase font-semibold block mt-1">Boutique • Gwalior</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-charcoal">
+                <a href="#about" class="hover:text-burgundy transition-colors">About Us</a>
+                <a href="#services" class="hover:text-burgundy transition-colors">Services</a>
+                <a href="#why-us" class="hover:text-burgundy transition-colors">Why Choose Us</a>
+                <a href="#gallery" class="hover:text-burgundy transition-colors">Gallery</a>
+                <a href="#appointment" class="hover:text-burgundy transition-colors">Book Appointment</a>
+                <a href="#contact" class="hover:text-burgundy transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <div id="headerStatusBadge" class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    <span id="headerStatusText">Open Now</span>
+                </div>
+                <a href="#appointment" class="gold-bg-gradient text-burgundy font-semibold px-4 py-2.5 rounded-full text-xs sm:text-sm shadow-md hover:shadow-lg hover:scale-105 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>Book Fitting</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="relative min-h-[85vh] flex items-center justify-center bg-gradient-to-b from-blush/60 via-cream to-cream overflow-hidden py-12 md:py-20">
+            <div class="absolute -top-12 -left-12 w-64 h-64 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-burgundy/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-gold/30 shadow-sm text-burgundy text-xs sm:text-sm font-medium">
+                        <i class="fa-solid fa-crown text-gold"></i>
+                        <span>Gwalior's Most Trusted Boutique</span>
+                    </div>
+
+                    <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-burgundy leading-tight sm:leading-tight">
+                        Perfect Fit, <br class="hidden sm:inline"/>
+                        <span class="gold-gradient-text italic">Elegant Designs,</span> <br/>
+                        Beautiful You.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-charcoal/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Experience bespoke tailoring customized to your unique silhouette. From royal designer blouses to heavy bridal lehengas & daily suit stitching by expert designer <strong>Preeti Kosta</strong>.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#appointment" class="w-full sm:w-auto text-center burgundy-gradient text-gold font-semibold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-calendar-days text-lg"></i>
+                            <span>Book Fitting Appointment</span>
+                        </a>
+                        <a href="https://wa.me/916267062990?text=Hello%20Enaya%20Boutique%2C%20I%20want%20to%20inquire%20about%20stitching%20services." target="_blank" class="w-full sm:w-auto text-center bg-emerald-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-emerald-700 transition-all flex items-center justify-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <span>Chat on WhatsApp</span>
+                        </a>
+                    </div>
+
+                    <div class="pt-8 border-t border-gold/20 grid grid-cols-2 sm:grid-cols-3 gap-4 text-left">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-blush flex items-center justify-center text-burgundy font-bold text-sm">
+                                <i class="fa-solid fa-tape"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-burgundy">100% Guaranteed</h4>
+                                <p class="text-[11px] text-gray-600">Perfect Fitting</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-blush flex items-center justify-center text-burgundy font-bold text-sm">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-burgundy">On-Time</h4>
+                                <p class="text-[11px] text-gray-600">Quick Delivery</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 col-span-2 sm:col-span-1">
+                            <div class="w-10 h-10 rounded-lg bg-blush flex items-center justify-center text-burgundy font-bold text-sm">
+                                <i class="fa-solid fa-gem"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-burgundy">Premium Finishing</h4>
+                                <p class="text-[11px] text-gray-600">Handcrafted Detail</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto w-full max-w-md">
+                        <div class="rounded-3xl overflow-hidden border-4 border-white shadow-2xl aspect-[4/5] bg-burgundy/10">
+                            <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80" alt="Boutique Tailoring Work" class="w-full h-full object-cover transform hover:scale-105 transition duration-700">
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-gold/30 flex items-center gap-3 max-w-[220px]">
+                            <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center text-burgundy text-xl font-bold">
+                                🌟
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-burgundy">Top Rated Studio</p>
+                                <p class="text-[10px] text-gray-500">In Tansen Road, Gwalior</p>
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -right-4 burgundy-gradient text-gold p-4 rounded-2xl shadow-xl border border-gold/40 text-center">
+                            <p class="font-serif font-bold text-xl">100%</p>
+                            <p class="text-[10px] text-goldLight uppercase tracking-wider">Custom Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Highlights Bar -->
+        <section class="bg-burgundy text-white py-10 border-y border-gold/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 rounded-xl bg-burgundyDark/40 border border-gold/20">
+                        <div class="text-gold text-2xl mb-2"><i class="fa-solid fa-ruler-combined"></i></div>
+                        <h3 class="font-serif text-lg font-bold">Perfect Measurement</h3>
+                        <p class="text-xs text-gray-300 mt-1">Personalized fitting for every posture</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-burgundyDark/40 border border-gold/20">
+                        <div class="text-gold text-2xl mb-2"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <h3 class="font-serif text-lg font-bold">Trendy Designs</h3>
+                        <p class="text-xs text-gray-300 mt-1">Latest Blouse & Suit Neck Patterns</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-burgundyDark/40 border border-gold/20">
+                        <div class="text-gold text-2xl mb-2"><i class="fa-solid fa-shirt"></i></div>
+                        <h3 class="font-serif text-lg font-bold">Urgent Stitching</h3>
+                        <p class="text-xs text-gray-300 mt-1">Express delivery on request</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-burgundyDark/40 border border-gold/20">
+                        <div class="text-gold text-2xl mb-2"><i class="fa-solid fa-heart"></i></div>
+                        <h3 class="font-serif text-lg font-bold">Personal Attention</h3>
+                        <p class="text-xs text-gray-300 mt-1">Direct consultation with Preeti Kosta</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tailoring Services Section -->
+        <section id="services" class="py-16 md:py-24 bg-cream">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-goldDark text-xs uppercase tracking-widest font-bold">Our Expertise</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-burgundy font-bold mt-2">Bespoke Stitching & Boutique Services</h2>
+                    <div class="w-16 h-1 bg-gold mx-auto my-4 rounded-full"></div>
+                    <p class="text-gray-600 text-sm sm:text-base">Custom tailored garments crafted with passion, precision, and elegance.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-blush text-burgundy flex items-center justify-center text-2xl mb-4 group-hover:bg-burgundy group-hover:text-gold transition-colors">
+                                <i class="fa-solid fa-vest flex"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-burgundy mb-2">Designer Blouse Stitching</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">Padded blouse, Sabyasachi cut, High neck, Boat neck, Backless & Mirror work blouse patterns with exact fitting.</p>
+                        </div>
+                        <a href="https://wa.me/916267062990?text=Hello%20Enaya%20Boutique%2C%20I%20want%20to%20inquire%20about%20Designer%20Blouse%20Stitching." target="_blank" class="text-center py-2.5 px-4 rounded-xl border border-burgundy text-burgundy font-medium text-xs hover:bg-burgundy hover:text-gold transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-600"></i> Enquire Rates
+                        </a>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-blush text-burgundy flex items-center justify-center text-2xl mb-4 group-hover:bg-burgundy group-hover:text-gold transition-colors">
+                                <i class="fa-solid fa-person-dress"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-burgundy mb-2">Salwar Suit & Anarkali</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">Straight suits, Punjabi Patiala, Sharara/Gharara sets, Nayra cut & Designer Anarkali suits crafted seamlessly.</p>
+                        </div>
+                        <a href="https://wa.me/916267062990?text=Hello%20Enaya%20Boutique%2C%20I%20want%20to%20inquire%20about%20Salwar%20Suit%20Stitching." target="_blank" class="text-center py-2.5 px-4 rounded-xl border border-burgundy text-burgundy font-medium text-xs hover:bg-burgundy hover:text-gold transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-600"></i> Enquire Rates
+                        </a>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-blush text-burgundy flex items-center justify-center text-2xl mb-4 group-hover:bg-burgundy group-hover:text-gold transition-colors">
+                                <i class="fa-solid fa-gem"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-burgundy mb-2">Bridal & Party Wear Lehenga</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">Heavy flared lehengas, Can-can attachment, Dupatta setting & custom bridal outfit designing.</p>
+                        </div>
+                        <a href="https://wa.me/916267062990?text=Hello%20Enaya%20Boutique%2C%20I%20want%20to%20inquire%20about%20Lehenga%20Stitching." target="_blank" class="text-center py-2.5 px-4 rounded-xl border border-burgundy text-burgundy font-medium text-xs hover:bg-burgundy hover:text-gold transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-600"></i> Enquire Rates
+                        </a>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-blush text-burgundy flex items-center justify-center text-2xl mb-4 group-hover:bg-burgundy group-hover:text-gold transition-colors">
+                                <i class="fa-solid fa-scissors"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-burgundy mb-2">Kurti & Indo-Western</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">Designer Kurtis, Long gowns, Crop tops, Palazzo sets & modern Indo-western silhouettes.</p>
+                        </div>
+                        <a href="https://wa.me/916267062990?text=Hello%20Enaya%20Boutique%2C%20I%20want%20to%20inquire%20about%20Kurti%20and%20Gown%20Stitching." target="_blank" class="text-center py-2.5 px-4 rounded-xl border border-burgundy text-burgundy font-medium text-xs hover:bg-burgundy hover:text-gold transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-600"></i> Enquire Rates
+                        </a>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-blush text-burgundy flex items-center justify-center text-2xl mb-4 group-hover:bg-burgundy group-hover:text-gold transition-colors">
+                                <i class="fa-solid fa-sliders"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-burgundy mb-2">Perfect Fitting & Alterations</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">Fixing tight/loose clothes, resizing readymade suits/dresses, and sleeve adjustments with fine finish.</p>
+                        </div>
+                        <a href="https://wa.me/916267062990?text=Hello%20Enaya%20Boutique%2C%20I%20need%20fitting%20or%20alteration%20service." target="_blank" class="text-center py-2.5 px-4 rounded-xl border border-burgundy text-burgundy font-medium text-xs hover:bg-burgundy hover:text-gold transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-600"></i> Enquire Rates
+                        </a>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-blush text-burgundy flex items-center justify-center text-2xl mb-4 group-hover:bg-burgundy group-hover:text-gold transition-colors">
+                                <i class="fa-solid fa-sparkles"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-burgundy mb-2">Fall Pico & Saree Finishing</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">High quality fall attachment, zig-zag pico, readymade saree pleating & designer tassels.</p>
+                        </div>
+                        <a href="https://wa.me/916267062990?text=Hello%20Enaya%20Boutique%2C%20I%20want%20to%20inquire%20about%20Fall%20Pico%20services." target="_blank" class="text-center py-2.5 px-4 rounded-xl border border-burgundy text-burgundy font-medium text-xs hover:bg-burgundy hover:text-gold transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-600"></i> Enquire Rates
+                        </a>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-blush text-burgundy flex items-center justify-center text-2xl mb-4 group-hover:bg-burgundy group-hover:text-gold transition-colors">
+                                <i class="fa-solid fa-user-gear"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-burgundy mb-2">Custom Neck & Pattern Styling</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">Bring any photo or Pinterest image and get the exact neck, sleeve and back design created.</p>
+                        </div>
+                        <a href="https://wa.me/916267062990?text=Hello%20Enaya%20Boutique%2C%20I%20have%20a%20design%20photo%20to%20show%20for%20stitching." target="_blank" class="text-center py-2.5 px-4 rounded-xl border border-burgundy text-burgundy font-medium text-xs hover:bg-burgundy hover:text-gold transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-600"></i> Enquire Rates
+                        </a>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-blush text-burgundy flex items-center justify-center text-2xl mb-4 group-hover:bg-burgundy group-hover:text-gold transition-colors">
+                                <i class="fa-solid fa-compass-drafting"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-burgundy mb-2">Personal Design Consultation</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">Free fashion consultation on fabric selection, neck design suitability & color combination.</p>
+                        </div>
+                        <a href="#appointment" class="text-center py-2.5 px-4 rounded-xl gold-bg-gradient text-burgundy font-bold text-xs hover:opacity-90 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-calendar-check"></i> Book Consultation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="why-us" class="py-16 bg-blush/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-goldDark text-xs uppercase tracking-widest font-bold">The Enaya Promise</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl text-burgundy font-bold mt-2 mb-6">Why Women In Gwalior Choose Enaya Boutique</h2>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-burgundy text-gold flex items-center justify-center shrink-0 mt-1 font-bold">1</div>
+                                <div>
+                                    <h3 class="font-bold text-burgundy text-base sm:text-lg">Flawless Tailoring & Perfect Fit Guarantee</h3>
+                                    <p class="text-xs sm:text-sm text-gray-600 mt-1">We take precise multi-point body measurements to ensure comfortable fitting without repetitive trial hassles.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-burgundy text-gold flex items-center justify-center shrink-0 mt-1 font-bold">2</div>
+                                <div>
+                                    <h3 class="font-bold text-burgundy text-base sm:text-lg">Timely Delivery As Promised</h3>
+                                    <p class="text-xs sm:text-sm text-gray-600 mt-1">We value your events and functions. Get your stitched dresses ready on or before your promised pickup date.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-burgundy text-gold flex items-center justify-center shrink-0 mt-1 font-bold">3</div>
+                                <div>
+                                    <h3 class="font-bold text-burgundy text-base sm:text-lg">Clean Finishing & Premium Quality Thread</h3>
+                                    <p class="text-xs sm:text-sm text-gray-600 mt-1">Overlocking, clean lining attachments, and double stitching for maximum durability and luxury feel.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-burgundy text-gold flex items-center justify-center shrink-0 mt-1 font-bold">4</div>
+                                <div>
+                                    <h3 class="font-bold text-burgundy text-base sm:text-lg">Hassle-Free Direct Boutique Visit</h3>
+                                    <p class="text-xs sm:text-sm text-gray-600 mt-1">Located right near Shiv Shakti Mandir, Tansen Road. Easy parking and warm personal welcome.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Owner Profile Card (No image) -->
+                    <div id="about" class="bg-white rounded-3xl p-8 border-2 border-gold/30 shadow-2xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-bl-full pointer-events-none"></div>
+                        
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-20 h-20 rounded-full border-2 border-gold p-1 shadow-md bg-cream flex items-center justify-center">
+                                <i class="fa-solid fa-user-tie text-4xl text-burgundy"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-2xl font-bold text-burgundy">Preeti Kosta</h3>
+                                <p class="text-xs font-semibold text-goldDark uppercase tracking-wider">Owner & Master Designer</p>
+                                <p class="text-xs text-gray-500 mt-1"><i class="fa-solid fa-location-dot text-burgundy"></i> Tansen Road, Gwalior</p>
+                            </div>
+                        </div>
+
+                        <blockquote class="italic text-gray-700 text-sm border-l-4 border-gold pl-4 py-1 mb-6 leading-relaxed">
+                            "A woman's outfit should reflect her personality with elegance and comfort. At Enaya Boutique, we craft every stitch with dedication so you feel confident and gorgeous."
+                        </blockquote>
+
+                        <div class="space-y-3 pt-4 border-t border-gray-100 text-xs sm:text-sm">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                                <span><strong>Specialization:</strong> Designer Blouse & Heavy Bridal Alterations</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                                <span><strong>Working Days:</strong> Wed - Mon (12:00 PM - 8:30 PM)</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-circle-check text-rose-600"></i>
+                                <span><strong>Weekly Off:</strong> Tuesday Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Appointment Booking Section -->
+        <section id="appointment" class="py-16 md:py-24 bg-cream">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gold/30 shadow-2xl relative">
+                    <div class="text-center max-w-xl mx-auto mb-8">
+                        <span class="text-goldDark text-xs uppercase tracking-widest font-bold">Instant Online Slot Booking</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl text-burgundy font-bold mt-1">Book Your Fitting Appointment</h2>
+                        <p class="text-xs sm:text-sm text-gray-600 mt-2">Select your date & time. Once booked, the slot gets automatically reserved for you.</p>
+                    </div>
+
+                    <!-- Tuesday Warning Alert Banner -->
+                    <div id="tuesdayWarning" class="hidden mb-6 p-4 rounded-2xl bg-amber-50 border border-amber-300 text-amber-800 text-xs sm:text-sm flex items-center gap-3">
+                        <i class="fa-solid fa-triangle-exclamation text-xl text-amber-600 shrink-0"></i>
+                        <div>
+                            <strong>Boutique Closed on Tuesdays!</strong>
+                            <p class="text-xs text-amber-700">Please choose any other day (Wed to Mon) between 12:00 PM and 8:30 PM.</p>
+                        </div>
+                    </div>
+
+                    <!-- Booking Form -->
+                    <form id="bookingForm" class="space-y-6">
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-burgundy mb-2 uppercase tracking-wider">Your Full Name *</label>
+                                <input type="text" id="custName" required placeholder="Enter your name" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-gold focus:border-gold outline-none transition-all text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-burgundy mb-2 uppercase tracking-wider">Phone / WhatsApp *</label>
+                                <input type="tel" id="custPhone" required placeholder="10-digit mobile number" maxlength="10" pattern="[0-9]{10}" title="Please enter 10 digit mobile number" inputmode="numeric" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-gold focus:border-gold outline-none transition-all text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-burgundy mb-2 uppercase tracking-wider">Select Service Required *</label>
+                            <select id="custService" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-gold focus:border-gold outline-none transition-all text-sm bg-white">
+                                <option value="">-- Select Tailoring Service --</option>
+                                <option value="Designer Blouse Stitching">Designer Blouse Stitching</option>
+                                <option value="Salwar Suit / Anarkali Stitching">Salwar Suit / Anarkali Stitching</option>
+                                <option value="Lehenga Stitching & Fitting">Lehenga Stitching & Fitting</option>
+                                <option value="Kurti / Gown Stitching">Kurti / Gown Stitching</option>
+                                <option value="Fitting & Alteration Work">Fitting & Alteration Work</option>
+                                <option value="Fall Pico & Saree Work">Fall Pico & Saree Work</option>
+                                <option value="General Consultation">General Consultation</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-burgundy mb-2 uppercase tracking-wider">Select Appointment Date *</label>
+                            <input type="date" id="custDate" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-gold focus:border-gold outline-none transition-all text-sm bg-white">
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="block text-xs font-bold text-burgundy uppercase tracking-wider">Select Time Slot (12:00 PM - 8:30 PM) *</label>
+                                <span class="text-[11px] text-gray-500 italic"><span class="inline-block w-2.5 h-2.5 rounded-full bg-red-400 mr-1"></span> Pre-booked slots locked</span>
+                            </div>
+
+                            <div id="slotsContainer" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-2.5 max-h-60 overflow-y-auto p-2 border border-gray-200 rounded-xl bg-gray-50/50">
+                                <p class="col-span-full text-center text-xs text-gray-500 py-6">Please select a valid date first to view available time slots.</p>
+                            </div>
+                            <input type="hidden" id="selectedTimeSlot" required>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit" id="submitBtn" class="w-full burgundy-gradient text-gold font-bold py-4 rounded-xl shadow-xl hover:shadow-2xl hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-3 text-base">
+                                <i class="fa-solid fa-lock"></i>
+                                <span>Confirm & Send Booking on WhatsApp</span>
+                            </button>
+                            <p class="text-[11px] text-center text-gray-500 mt-2">
+                                <i class="fa-solid fa-shield-halved text-emerald-600"></i> Your slot will be locked automatically & message will pre-fill for +91 6267062990.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-16 bg-blush/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-goldDark text-xs uppercase tracking-widest font-bold">Our Portfolio</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-burgundy font-bold mt-1">Design Showcase</h2>
+                    <div class="w-16 h-1 bg-gold mx-auto my-3 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    <div class="rounded-2xl overflow-hidden shadow-md group relative aspect-[3/4] bg-gray-200 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1000&q=80', 'Designer Blouse Collection')">
+                        <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Blouse Stitching">
+                        <div class="absolute inset-0 bg-gradient-to-t from-burgundy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4 text-white text-xs font-semibold">
+                            Designer Blouse
+                        </div>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-md group relative aspect-[3/4] bg-gray-200 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80', 'Bridal Lehenga Details')">
+                        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Bridal Lehenga">
+                        <div class="absolute inset-0 bg-gradient-to-t from-burgundy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4 text-white text-xs font-semibold">
+                            Bridal Lehenga Work
+                        </div>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-md group relative aspect-[3/4] bg-gray-200 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1000&q=80', 'Boutique Suit Stitching')">
+                        <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Suit Stitching">
+                        <div class="absolute inset-0 bg-gradient-to-t from-burgundy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4 text-white text-xs font-semibold">
+                            Custom Suit
+                        </div>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-md group relative aspect-[3/4] bg-gray-200 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1000&q=80', 'Partywear Outfit')">
+                        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Boutique Gown">
+                        <div class="absolute inset-0 bg-gradient-to-t from-burgundy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4 text-white text-xs font-semibold">
+                            Anarkali & Gown
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Process Section -->
+        <section class="py-16 bg-cream">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-goldDark text-xs uppercase tracking-widest font-bold">How It Works</span>
+                    <h2 class="font-serif text-3xl font-bold text-burgundy mt-1">4 Simple Steps to Your Perfect Outfit</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+                    <div class="bg-white p-6 rounded-2xl border border-gold/20 shadow-md text-center">
+                        <div class="w-12 h-12 rounded-full gold-bg-gradient text-burgundy font-bold text-lg mx-auto flex items-center justify-center mb-4">1</div>
+                        <h3 class="font-serif font-bold text-burgundy text-base mb-1">Book & Visit</h3>
+                        <p class="text-xs text-gray-600">Select date & slot or directly visit our studio near Shiv Shakti Mandir.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gold/20 shadow-md text-center">
+                        <div class="w-12 h-12 rounded-full gold-bg-gradient text-burgundy font-bold text-lg mx-auto flex items-center justify-center mb-4">2</div>
+                        <h3 class="font-serif font-bold text-burgundy text-base mb-1">Design & Measure</h3>
+                        <p class="text-xs text-gray-600">Discuss necklines, sleeves & give precise measurements to Preeti Kosta.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gold/20 shadow-md text-center">
+                        <div class="w-12 h-12 rounded-full gold-bg-gradient text-burgundy font-bold text-lg mx-auto flex items-center justify-center mb-4">3</div>
+                        <h3 class="font-serif font-bold text-burgundy text-base mb-1">Master Crafting</h3>
+                        <p class="text-xs text-gray-600">Your dress is stitched with high precision, fine lining & overlock finishing.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gold/20 shadow-md text-center">
+                        <div class="w-12 h-12 rounded-full gold-bg-gradient text-burgundy font-bold text-lg mx-auto flex items-center justify-center mb-4">4</div>
+                        <h3 class="font-serif font-bold text-burgundy text-base mb-1">Trial & Pickup</h3>
+                        <p class="text-xs text-gray-600">Take a trial fitting on delivery day and take home your stunning outfit!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact & Google Map Location Section -->
+        <section id="contact" class="py-16 bg-blush/40 border-t border-gold/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    
+                    <div class="lg:col-span-5 bg-white p-8 rounded-3xl border border-gold/30 shadow-xl flex flex-col justify-between">
+                        <div>
+                            <span class="text-goldDark text-xs uppercase tracking-widest font-bold">Visit Us</span>
+                            <h2 class="font-serif text-3xl font-bold text-burgundy mt-1 mb-6">ENAYA BOUTIQUE</h2>
+
+                            <div class="space-y-5 text-sm">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-blush text-burgundy flex items-center justify-center shrink-0 mt-0.5">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-burgundy">Studio Address</h4>
+                                        <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                                            Near Shiv Shakti Mandir, Tansen Road,<br/>
+                                            Gwalior, Madhya Pradesh - 474002
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-blush text-burgundy flex items-center justify-center shrink-0 mt-0.5">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-burgundy">Owner / Designer</h4>
+                                        <p class="text-xs text-gray-600 mt-0.5">Preeti Kosta</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-blush text-burgundy flex items-center justify-center shrink-0 mt-0.5">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-burgundy">Phone & WhatsApp</h4>
+                                        <p class="text-xs text-gray-600 mt-0.5">+91 6267062990</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-blush text-burgundy flex items-center justify-center shrink-0 mt-0.5">
+                                        <i class="fa-solid fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-burgundy">Boutique Hours</h4>
+                                        <p class="text-xs text-gray-600 mt-0.5">Wednesday – Monday: 12:00 PM – 8:30 PM</p>
+                                        <p class="text-xs text-rose-600 font-semibold mt-0.5"><i class="fa-solid fa-circle-xmark"></i> Tuesday Closed</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-3">
+                            <a href="https://maps.app.goo.gl/HDQR3PqL6GjNP17H9?g_st=ac" target="_blank" class="flex-1 bg-burgundy text-gold font-bold py-3 px-4 rounded-xl text-xs text-center shadow-md hover:bg-burgundyDark transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-map-location-dot"></i> Open Google Maps
+                            </a>
+                            <a href="tel:6267062990" class="flex-1 bg-gold text-burgundy font-bold py-3 px-4 rounded-xl text-xs text-center shadow-md hover:bg-goldDark hover:text-white transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-phone"></i> Call Direct
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 rounded-3xl overflow-hidden border-2 border-gold/30 shadow-xl min-h-[350px] relative bg-gray-200">
+                        <iframe src="https://maps.google.com/maps?q=Enaya%20Boutique%2C%20Tansen%20Road%2C%20Gwalior&t=&z=15&ie=UTF8&iwloc=&output=embed" class="w-full h-full border-0 min-h-[350px]" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-burgundyDark text-white pt-12 pb-24 md:pb-12 border-t border-gold/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+                <div>
+                    <h3 class="font-serif text-2xl font-bold text-gold">ENAYA BOUTIQUE</h3>
+                    <p class="text-xs text-goldLight/80 mt-1">Perfect Fit • Elegant Designs • Beautiful You</p>
+                    <p class="text-xs text-gray-400 mt-2">Near Shiv Shakti Mandir, Tansen Road, Gwalior | Owner: Preeti Kosta</p>
+                </div>
+                
+                <div class="flex items-center gap-4 text-xl text-gold">
+                    <a href="https://wa.me/916267062990" target="_blank" class="w-10 h-10 rounded-full bg-burgundy flex items-center justify-center border border-gold/30 hover:bg-gold hover:text-burgundy transition-all"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="tel:6267062990" class="w-10 h-10 rounded-full bg-burgundy flex items-center justify-center border border-gold/30 hover:bg-gold hover:text-burgundy transition-all"><i class="fa-solid fa-phone"></i></a>
+                    <a href="https://maps.app.goo.gl/HDQR3PqL6GjNP17H9?g_st=ac" target="_blank" class="w-10 h-10 rounded-full bg-burgundy flex items-center justify-center border border-gold/30 hover:bg-gold hover:text-burgundy transition-all"><i class="fa-solid fa-location-dot"></i></a>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-burgundy/60 text-center text-[11px] text-gray-400">
+                &copy; 2024 - 2026 ENAYA BOUTIQUE. All Rights Reserved. Crafted with care in Gwalior.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="fixed bottom-20 sm:bottom-8 right-4 z-40 flex flex-col gap-3">
+        <a href="https://wa.me/916267062990?text=Hello%20Enaya%20Boutique%2C%20I%20have%20a%20query." target="_blank" class="w-13 h-13 rounded-full bg-emerald-500 text-white shadow-2xl flex items-center justify-center text-2xl hover:scale-110 transition-transform p-3">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Mobile Bottom Navigation (will hide when keyboard opens) -->
+    <div id="mobileBottomNav" class="md:hidden fixed bottom-0 left-0 right-0 z-50 glass-header border-t border-gold/30 px-2 py-2 flex items-center justify-around text-center shadow-lg">
+        <a href="#services" class="flex flex-col items-center text-charcoal hover:text-burgundy text-[10px] font-medium">
+            <i class="fa-solid fa-scissors text-base text-burgundy"></i>
+            <span>Services</span>
+        </a>
+        <a href="#about" class="flex flex-col items-center text-charcoal hover:text-burgundy text-[10px] font-medium">
+            <i class="fa-solid fa-user-check text-base text-burgundy"></i>
+            <span>About</span>
+        </a>
+        <a href="#appointment" class="flex flex-col items-center gold-bg-gradient text-burgundy font-bold px-3 py-1.5 rounded-full text-[11px] shadow-sm">
+            <i class="fa-solid fa-calendar-plus text-xs"></i>
+            <span>Book Slot</span>
+        </a>
+        <a href="#contact" class="flex flex-col items-center text-charcoal hover:text-burgundy text-[10px] font-medium">
+            <i class="fa-solid fa-location-dot text-base text-burgundy"></i>
+            <span>Map</span>
+        </a>
+        <a href="tel:6267062990" class="flex flex-col items-center text-charcoal hover:text-burgundy text-[10px] font-medium">
+            <i class="fa-solid fa-phone text-base text-emerald-600"></i>
+            <span>Call</span>
+        </a>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white text-3xl font-bold hover:text-gold" onclick="closeLightbox()">&times;</button>
+        <div class="max-w-3xl max-h-[90vh] text-center" onclick="event.stopPropagation()">
+            <img id="lightboxImg" class="max-w-full max-h-[80vh] rounded-2xl mx-auto shadow-2xl" src="" alt="Zoomed Work">
+            <p id="lightboxCaption" class="text-gold font-serif mt-4 text-base"></p>
+        </div>
+    </div>
+
+    <!-- APPOINTMENT CONFIRMATION MODAL -->
+    <div id="confirmationModal" class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl confirm-modal border border-gold/30 relative">
+            <div class="text-center">
+                <div class="w-20 h-20 rounded-full bg-emerald-100 border-2 border-emerald-400 flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-check-circle text-4xl text-emerald-600"></i>
+                </div>
+                <h3 class="font-serif text-2xl font-bold text-burgundy mb-2">Appointment Confirmed!</h3>
+                <p class="text-xs text-gray-600 mb-6">Your slot has been successfully reserved. Details below:</p>
+                
+                <div id="confirmDetails" class="bg-cream rounded-2xl p-4 text-left text-sm space-y-2 border border-gold/20 mb-6">
+                    <!-- Filled by JS -->
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <a id="whatsappConfirmBtn" href="#" target="_blank" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-emerald-700 transition-all flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Send on WhatsApp
+                    </a>
+                    <button onclick="downloadAppointmentImage()" class="w-full bg-burgundy text-gold font-bold py-3 rounded-xl shadow-lg hover:bg-burgundyDark transition-all flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-solid fa-download"></i> Download Appointment (PNG)
+                    </button>
+                    <button onclick="closeConfirmationModal()" class="w-full text-gray-500 text-xs py-2 hover:text-burgundy transition-all">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRE-BOOKED SLOTS DATA (to simulate rush) -->
+    <script>
+        window.preBookedSlots = {
+            '2026-02-15': ['12:00 PM', '12:20 PM', '02:00 PM', '04:40 PM', '06:00 PM'],
+            '2026-02-16': ['01:00 PM', '03:20 PM', '05:00 PM', '07:20 PM'],
+            '2026-02-17': ['12:40 PM', '02:40 PM', '04:00 PM', '06:40 PM', '08:00 PM'],
+            '2026-02-18': ['12:00 PM', '01:20 PM', '03:00 PM', '05:20 PM', '07:00 PM'],
+            '2026-02-19': ['12:20 PM', '02:20 PM', '04:20 PM', '06:20 PM', '08:20 PM'],
+            '2026-02-20': ['01:40 PM', '03:40 PM', '05:40 PM', '07:40 PM'],
+            '2026-02-21': ['12:00 PM', '12:20 PM', '02:00 PM', '04:40 PM', '06:00 PM', '08:00 PM'],
+            '2026-02-22': ['01:00 PM', '03:20 PM', '05:00 PM', '07:20 PM'],
+        };
+
+        function getPreBookedSlotsForDate(dateStr) {
+            const dayOfWeek = new Date(dateStr + 'T00:00:00').getDay();
+            if (dayOfWeek === 2) return [];
+
+            if (window.preBookedSlots[dateStr]) {
+                return window.preBookedSlots[dateStr];
+            }
+
+            const allSlots = [
+                "12:00 PM", "12:20 PM", "12:40 PM",
+                "01:00 PM", "01:20 PM", "01:40 PM",
+                "02:00 PM", "02:20 PM", "02:40 PM",
+                "03:00 PM", "03:20 PM", "03:40 PM",
+                "04:00 PM", "04:20 PM", "04:40 PM",
+                "05:00 PM", "05:20 PM", "05:40 PM",
+                "06:00 PM", "06:20 PM", "06:40 PM",
+                "07:00 PM", "07:20 PM", "07:40 PM",
+                "08:00 PM", "08:20 PM"
+            ];
+            
+            const seed = dateStr.split('-').reduce((acc, val) => acc + parseInt(val), 0);
+            const booked = [];
+            allSlots.forEach((slot, index) => {
+                if ((index + seed) % 3 === 0 || (index + seed) % 5 === 0) {
+                    booked.push(slot);
+                }
+            });
+            if (booked.length < 5) {
+                booked.push("12:00 PM", "02:20 PM", "04:40 PM", "06:20 PM", "08:00 PM");
+            }
+            return [...new Set(booked)];
+        }
+    </script>
+
+    <script>
+        // Splash Screen Control
+        window.addEventListener('DOMContentLoaded', () => {
+            const splash = document.getElementById('splashScreen');
+            if (sessionStorage.getItem('enaya_splash_shown')) {
+                splash.style.display = 'none';
+            } else {
+                sessionStorage.setItem('enaya_splash_shown', 'true');
+                setTimeout(() => {
+                    splash.classList.add('opacity-0');
+                    setTimeout(() => {
+                        splash.style.display = 'none';
+                    }, 700);
+                }, 1500);
+            }
+
+            const dateInput = document.getElementById('custDate');
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const minDate = `${yyyy}-${mm}-${dd}`;
+            dateInput.min = minDate;
+            dateInput.value = minDate;
+
+            handleDateSelection(minDate);
+            updateHeaderBoutiqueStatus();
+        });
+
+        // Open/Closed Status
+        function updateHeaderBoutiqueStatus() {
+            const now = new Date();
+            const day = now.getDay();
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            const timeVal = hour + (minute / 60);
+
+            const badge = document.getElementById('headerStatusBadge');
+            const text = document.getElementById('headerStatusText');
+
+            if (day === 2) {
+                badge.className = "hidden sm:flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-300";
+                text.innerText = "Closed (Tuesday)";
+            } else if (timeVal >= 12 && timeVal < 20.5) {
+                badge.className = "hidden sm:flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300";
+                text.innerText = "Open Today";
+            } else {
+                badge.className = "hidden sm:flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-300";
+                text.innerText = "Closed Now (Opens 12 PM)";
+            }
+        }
+
+        // Time Slots Definition
+        const timeSlots = [
+            "12:00 PM", "12:20 PM", "12:40 PM",
+            "01:00 PM", "01:20 PM", "01:40 PM",
+            "02:00 PM", "02:20 PM", "02:40 PM",
+            "03:00 PM", "03:20 PM", "03:40 PM",
+            "04:00 PM", "04:20 PM", "04:40 PM",
+            "05:00 PM", "05:20 PM", "05:40 PM",
+            "06:00 PM", "06:20 PM", "06:40 PM",
+            "07:00 PM", "07:20 PM", "07:40 PM",
+            "08:00 PM", "08:20 PM"
+        ];
+
+        let bookedSlotsMap = {};
+
+        document.getElementById('custDate').addEventListener('change', (e) => {
+            handleDateSelection(e.target.value);
+        });
+
+        function handleDateSelection(selectedDateStr) {
+            const warningBox = document.getElementById('tuesdayWarning');
+            const container = document.getElementById('slotsContainer');
+            const selectedTimeHidden = document.getElementById('selectedTimeSlot');
+            selectedTimeHidden.value = '';
+
+            if (!selectedDateStr) return;
+
+            const selectedDate = new Date(selectedDateStr + 'T00:00:00');
+            const dayOfWeek = selectedDate.getDay();
+
+            if (dayOfWeek === 2) {
+                warningBox.classList.remove('hidden');
+                container.innerHTML = `<p class="col-span-full text-center text-xs text-rose-600 font-bold py-6">Enaya Boutique is CLOSED on Tuesdays. Please pick another date.</p>`;
+                return;
+            } else {
+                warningBox.classList.add('hidden');
+            }
+
+            container.innerHTML = '<p class="col-span-full text-center text-xs text-gray-500 py-6"><i class="fa-solid fa-spinner animate-spin"></i> Checking slot availability...</p>';
+
+            fetchBookedSlotsForDate(selectedDateStr, (bookedList) => {
+                const preBooked = getPreBookedSlotsForDate(selectedDateStr);
+                const combinedBooked = Array.from(new Set([...bookedList, ...preBooked]));
+                renderTimeSlots(selectedDateStr, combinedBooked);
+            });
+        }
+
+        function fetchBookedSlotsForDate(dateStr, callback) {
+            const localKey = 'enaya_booked_' + dateStr;
+            let localBooked = JSON.parse(localStorage.getItem(localKey) || '[]');
+
+            if (window.firebaseDb) {
+                const dateRef = window.dbRef(window.firebaseDb, 'appointments/' + dateStr);
+                window.dbGet(dateRef).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const fbData = snapshot.val();
+                        const fbSlots = Object.keys(fbData);
+                        const merged = Array.from(new Set([...localBooked, ...fbSlots]));
+                        localStorage.setItem(localKey, JSON.stringify(merged));
+                        callback(merged);
+                    } else {
+                        callback(localBooked);
+                    }
+                }).catch((err) => {
+                    console.log('Firebase fetch fallback to local:', err);
+                    callback(localBooked);
+                });
+            } else {
+                callback(localBooked);
+            }
+        }
+
+        function renderTimeSlots(dateStr, bookedList) {
+            const container = document.getElementById('slotsContainer');
+            container.innerHTML = '';
+
+            timeSlots.forEach((slot) => {
+                const isBooked = bookedList.includes(slot);
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `slot-btn py-2 px-3 rounded-lg text-xs font-semibold border transition-all text-center relative ${
+                    isBooked 
+                    ? 'disabled-slot' 
+                    : 'bg-white border-gold/40 text-burgundy hover:bg-gold hover:text-burgundy'
+                }`;
+                
+                if (isBooked) {
+                    btn.disabled = true;
+                    btn.innerHTML = `${slot} <span class="block text-[9px] text-red-500 font-bold">BOOKED</span>`;
+                } else {
+                    btn.innerText = slot;
+                    btn.onclick = () => selectSlot(btn, slot);
+                }
+
+                container.appendChild(btn);
+            });
+        }
+
+        let currentlySelectedBtn = null;
+        function selectSlot(btn, slot) {
+            if (currentlySelectedBtn) {
+                currentlySelectedBtn.classList.remove('burgundy-gradient', 'text-gold', 'border-burgundy');
+                currentlySelectedBtn.classList.add('bg-white', 'text-burgundy', 'border-gold/40');
+            }
+
+            btn.classList.remove('bg-white', 'text-burgundy', 'border-gold/40');
+            btn.classList.add('burgundy-gradient', 'text-gold', 'border-burgundy');
+            currentlySelectedBtn = btn;
+
+            document.getElementById('selectedTimeSlot').value = slot;
+        }
+
+        // FORM SUBMISSION - WITH 2 PER DAY LIMIT
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const service = document.getElementById('custService').value;
+            const rawDate = document.getElementById('custDate').value;
+            const slot = document.getElementById('selectedTimeSlot').value;
+
+            // Validate mobile number (10 digits)
+            if (!/^\d{10}$/.test(phone)) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
+
+            if (!slot) {
+                alert('Please tap and select a time slot from the list.');
+                return;
+            }
+
+            // Check daily submission limit (max 2 per day)
+            const todayStr = new Date().toISOString().slice(0,10);
+            let submissionCount = parseInt(localStorage.getItem('enaya_submission_count') || '0');
+            let submissionDate = localStorage.getItem('enaya_submission_date');
+            if (submissionDate !== todayStr) {
+                submissionCount = 0;
+                localStorage.setItem('enaya_submission_date', todayStr);
+                localStorage.setItem('enaya_submission_count', '0');
+            }
+            if (submissionCount >= 2) {
+                alert('You have already submitted 2 appointment requests today. Please try again tomorrow.');
+                return;
+            }
+
+            // Date Formatting
+            const dateObj = new Date(rawDate + 'T00:00:00');
+            const options = { day: 'numeric', month: 'short', year: 'numeric' };
+            const formattedDate = dateObj.toLocaleDateString('en-IN', options);
+
+            // Mark slot as booked locally & Firebase
+            const localKey = 'enaya_booked_' + rawDate;
+            let localBooked = JSON.parse(localStorage.getItem(localKey) || '[]');
+            if (!localBooked.includes(slot)) {
+                localBooked.push(slot);
+                localStorage.setItem(localKey, JSON.stringify(localBooked));
+            }
+
+            if (window.firebaseDb) {
+                const slotKey = slot.replace(/[\s:]/g, '_');
+                const slotRef = window.dbRef(window.firebaseDb, `appointments/${rawDate}/${slot}`);
+                window.dbSet(slotRef, {
+                    name: name,
+                    phone: phone,
+                    service: service,
+                    bookedAt: new Date().toISOString()
+                }).catch(err => console.log('FB Set error:', err));
+            }
+
+            if (currentlySelectedBtn) {
+                currentlySelectedBtn.disabled = true;
+                currentlySelectedBtn.className = 'slot-btn py-2 px-3 rounded-lg text-xs font-semibold border disabled-slot relative';
+                currentlySelectedBtn.innerHTML = `${slot} <span class="block text-[9px] text-red-500 font-bold">BOOKED</span>`;
+            }
+
+            // Prepare WhatsApp message
+            const whatsappMsg = `Hello Enaya Boutique 👋
+
+Maine appointment book ki hai.
+
+👤 Name: ${name}
+📅 Date: ${formattedDate}
+⏰ Time: ${slot}
+✂️ Service: ${service}
+
+📍 Enaya Boutique
+Near Shiv Shakti Mandir,
+Tansen Road, Gwalior
+
+Please confirm my appointment.
+
+Thank you.`;
+
+            const encodedMsg = encodeURIComponent(whatsappMsg);
+            const targetNumber = "916267062990";
+            const whatsappURL = `https://wa.me/${targetNumber}?text=${encodedMsg}`;
+
+            // Store current booking details
+            window.currentBooking = {
+                name: name,
+                phone: phone,
+                service: service,
+                date: formattedDate,
+                rawDate: rawDate,
+                slot: slot,
+                whatsappURL: whatsappURL
+            };
+
+            // Increment submission count
+            submissionCount++;
+            localStorage.setItem('enaya_submission_count', submissionCount.toString());
+
+            // Show confirmation modal
+            showConfirmationModal(window.currentBooking);
+
+            // Reset form partially
+            document.getElementById('bookingForm').reset();
+            document.getElementById('selectedTimeSlot').value = '';
+            currentlySelectedBtn = null;
+
+            // Re-render slots to show booked state
+            handleDateSelection(rawDate);
+        });
+
+        // CONFIRMATION MODAL FUNCTIONS
+        function showConfirmationModal(booking) {
+            const modal = document.getElementById('confirmationModal');
+            const detailsDiv = document.getElementById('confirmDetails');
+            const waBtn = document.getElementById('whatsappConfirmBtn');
+
+            detailsDiv.innerHTML = `
+                <p><strong>👤 Name:</strong> ${booking.name}</p>
+                <p><strong>📞 Phone:</strong> ${booking.phone}</p>
+                <p><strong>✂️ Service:</strong> ${booking.service}</p>
+                <p><strong>📅 Date:</strong> ${booking.date}</p>
+                <p><strong>⏰ Time:</strong> ${booking.slot}</p>
+            `;
+
+            waBtn.href = booking.whatsappURL;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeConfirmationModal() {
+            const modal = document.getElementById('confirmationModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // DOWNLOAD APPOINTMENT AS PNG
+        function downloadAppointmentImage() {
+            if (!window.currentBooking) {
+                alert('No booking data available.');
+                return;
+            }
+            const b = window.currentBooking;
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = 600;
+            canvas.height = 700;
+
+            const gradient = ctx.createLinearGradient(0, 0, 600, 700);
+            gradient.addColorStop(0, '#5B1E31');
+            gradient.addColorStop(1, '#3D1220');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 600, 700);
+
+            ctx.strokeStyle = '#D4AF37';
+            ctx.lineWidth = 6;
+            ctx.strokeRect(12, 12, 576, 676);
+
+            ctx.fillStyle = '#D4AF37';
+            ctx.beginPath();
+            ctx.arc(40, 40, 20, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(560, 40, 20, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(40, 660, 20, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(560, 660, 20, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#D4AF37';
+            ctx.font = 'bold 36px "Playfair Display", serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('ENAYA BOUTIQUE', 300, 100);
+
+            ctx.font = '18px Poppins, sans-serif';
+            ctx.fillStyle = '#F3E5AB';
+            ctx.fillText('Appointment Confirmation', 300, 145);
+
+            ctx.beginPath();
+            ctx.strokeStyle = '#D4AF37';
+            ctx.lineWidth = 2;
+            ctx.moveTo(100, 170);
+            ctx.lineTo(500, 170);
+            ctx.stroke();
+
+            ctx.textAlign = 'left';
+            ctx.font = '20px Poppins, sans-serif';
+            ctx.fillStyle = '#FAF7F2';
+
+            const startY = 230;
+            const lineHeight = 50;
+
+            ctx.fillText('👤  Name:', 80, startY);
+            ctx.fillStyle = '#F3E5AB';
+            ctx.fillText(b.name, 280, startY);
+
+            ctx.fillStyle = '#FAF7F2';
+            ctx.fillText('📞  Phone:', 80, startY + lineHeight);
+            ctx.fillStyle = '#F3E5AB';
+            ctx.fillText(b.phone, 280, startY + lineHeight);
+
+            ctx.fillStyle = '#FAF7F2';
+            ctx.fillText('✂️  Service:', 80, startY + lineHeight*2);
+            ctx.fillStyle = '#F3E5AB';
+            ctx.fillText(b.service, 280, startY + lineHeight*2);
+
+            ctx.fillStyle = '#FAF7F2';
+            ctx.fillText('📅  Date:', 80, startY + lineHeight*3);
+            ctx.fillStyle = '#F3E5AB';
+            ctx.fillText(b.date, 280, startY + lineHeight*3);
+
+            ctx.fillStyle = '#FAF7F2';
+            ctx.fillText('⏰  Time:', 80, startY + lineHeight*4);
+            ctx.fillStyle = '#F3E5AB';
+            ctx.fillText(b.slot, 280, startY + lineHeight*4);
+
+            ctx.font = '16px Poppins, sans-serif';
+            ctx.fillStyle = '#D4AF37';
+            ctx.textAlign = 'center';
+            ctx.fillText('Near Shiv Shakti Mandir, Tansen Road, Gwalior', 300, 600);
+            ctx.fillText('+91 6267062990', 300, 630);
+
+            const link = document.createElement('a');
+            link.download = 'enaya_boutique_appointment.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Gallery Lightbox
+        function openLightbox(imgSrc, caption) {
+            const modal = document.getElementById('lightbox');
+            document.getElementById('lightboxImg').src = imgSrc;
+            document.getElementById('lightboxCaption').innerText = caption;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Close confirmation modal on background click
+        document.getElementById('confirmationModal').addEventListener('click', function(e) {
+            if (e.target === this) closeConfirmationModal();
+        });
+
+        // ========== KEYBOARD HIDE BOTTOM NAV ==========
+        (function() {
+            const bottomNav = document.getElementById('mobileBottomNav');
+            const inputs = document.querySelectorAll('input, select, textarea');
+
+            // Hide on focus, show on blur
+            inputs.forEach(el => {
+                el.addEventListener('focus', () => {
+                    if (window.innerWidth < 768) {
+                        document.body.classList.add('keyboard-open');
+                    }
+                });
+                el.addEventListener('blur', () => {
+                    if (window.innerWidth < 768) {
+                        document.body.classList.remove('keyboard-open');
+                    }
+                });
+            });
+
+            // Also hide when visual viewport shrinks (keyboard opens)
+            if (window.visualViewport) {
+                window.visualViewport.addEventListener('resize', () => {
+                    if (window.innerWidth < 768) {
+                        const isKeyboardOpen = window.visualViewport.height < window.innerHeight * 0.8;
+                        if (isKeyboardOpen) {
+                            document.body.classList.add('keyboard-open');
+                        } else {
+                            document.body.classList.remove('keyboard-open');
+                        }
+                    }
+                });
+            }
+
+            // Ensure it's shown on orientation change / resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) {
+                    document.body.classList.remove('keyboard-open');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
